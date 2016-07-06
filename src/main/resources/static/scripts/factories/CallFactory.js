@@ -7,10 +7,10 @@ angular.module('shoppingCart').factory('CallFactory', ['$location','$resource', 
    };
    return {
        products: function () {
-            return $resource(urls['PRODUCTS'], {}, {find: {method: 'GET', isArray: false}});
+            return $resource(urls['PRODUCTS'], {}, {find: {method: 'GET', isArray: true}});
        },
        newProduct: function () {
-            return $resource(urls['NEW_PRODUCT'], {}, {find: {method: 'POST', isArray: false}});
+            return $resource(urls['NEW_PRODUCT'], {}, {save: {method: 'POST', isArray: false}});
        }
    }
 }]);
