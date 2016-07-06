@@ -15,6 +15,7 @@ import java.util.List;
  * Created by Raduq on 04/07/2016.
  */
 @Controller
+@RequestMapping(value = "/store")
 public class ProductController {
 
     @Autowired

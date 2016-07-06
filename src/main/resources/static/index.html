@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="shoppingCart">
 <head>
     <title>Static</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-controller="CartController as vm">
 <div id="navbar" class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -28,9 +28,55 @@
         <a class="btn btn-lg btn-primary" href="#navbar" role="button">Go &raquo;</a>
     </p>
 </div>
+
+<div class="container-fluid">
+    <h2>Produtos disponíveis</h2>
+    <button class="btn btn-default pull-right" type="button" ng-click="vm.newProduct()">Novo produto</button>
+
+    <div class="panel panel-info" ng-show="vm.creatingProduct">
+        <div class="panel-heading">
+            <h3 class="panel-title">Novo produto</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="prdName">Nome</label>
+                <input type="text" class="form-control" id="prdName" placeholder="Nome" ng-model="vm.name">
+            </div>
+            <div class="form-group">
+                <label for="prdImage">Url da imagem</label>
+                <input type="text" class="form-control" id="prdImage" placeholder="Url da imagem" ng-model="vm.image">
+            </div>
+            <div class="form-group">
+                <label for="prdPrice">Preço</label>
+                <input type="text" class="form-control" id="prdPrice" placeholder="Preço" ng-model="vm.price">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="vm.saveProduct()">Salvar</button>
+        </div>
+    </div>
+
+    <div class="panel panel-danger" ng-show="vm.productsMessage">
+        <div class="panel-heading">
+            <h3 class="panel-title">Atenção</h3>
+        </div>
+        <div class="panel-body">
+            <span><i class="glyphicon glyphicon-exclamation-sign"></i> {{vm.productsMessage}}</span>
+        </div>
+    </div>
+
+    <ul>
+        <li ng-repeat="product in vm.products">
+            {{product.name}}
+        </li>
+    </ul>
+
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/factories/CallFactory.js"></script>
+<script src="scripts/controllers/CartController.js"></script>
 </body>
 </html>

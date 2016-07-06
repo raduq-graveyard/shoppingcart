@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +21,9 @@ public class ProductService {
 
     /** Find all the products **/
     public List<Product> getProducts(){
-        return repository.findAll();
+        List<Product> products = new ArrayList<>();
+        products = repository.findAll();
+        return products;
     }
 
     public Product getProduct(Long product_id) {
