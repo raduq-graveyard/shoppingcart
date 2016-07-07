@@ -1,5 +1,7 @@
 package com.raduq.shopping.model;
 
+import com.raduq.shopping.dto.ItemDto;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,7 +14,7 @@ import java.util.Objects;
 public class CommerceItem implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     private Product product;
@@ -21,7 +23,8 @@ public class CommerceItem implements Serializable {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    public CommerceItem(){}
+    public CommerceItem() {
+    }
 
     public CommerceItem(Product product, Integer quantity) {
         this.product = product;
@@ -64,7 +67,7 @@ public class CommerceItem implements Serializable {
     /**
      * Calculates the amount based on items on the cart.
      */
-    private void calculate(){
+    private void calculate() {
         this.amount = product.getPrice().multiply(new BigDecimal(this.quantity));
     }
 
@@ -82,5 +85,10 @@ public class CommerceItem implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, product, quantity, amount);
+    }
+
+    public ItemDto toDto() {
+        return new ItemDto(getId().toString(), getProduct_id().getId().toString(), product.getName(),
+                getQuantity().toString(), getAmount().toString());
     }
 }

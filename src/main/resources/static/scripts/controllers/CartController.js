@@ -25,7 +25,7 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
       },function(error){
           vm.errorMessage = error.statusText;
       });
-      CallFactory.shoppingCart().find().$promise.then(function(response)){
+      CallFactory.shoppingCart().find().$promise.then(function(response){
         vm.cart = response;
       },function(error){
          vm.errorMessage = error.statusText;
@@ -63,5 +63,14 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
            vm.errorMessage = error.statusText;
        });
     }
+
+    vm.removeProduct = function(id){
+           CallFactory.deleteItem(id).exec().$promise.then(function(response){
+               vm.initialize();
+               vm.newItemQuantity = 0;
+           },function(error){
+               vm.errorMessage = error.statusText;
+           });
+        }
 
 }]);

@@ -11,6 +11,7 @@ public class ItemDto implements Serializable {
 
     private String id;
     private String product_id;
+    private String product_name;
     private String quantity;
     private String amount;
 
@@ -22,9 +23,10 @@ public class ItemDto implements Serializable {
         this.quantity = quantity;
     }
 
-    public ItemDto(String id, String product_id, String quantity, String amount) {
+    public ItemDto(String id, String product_id, String product_name, String quantity, String amount) {
         this.id = id;
         this.product_id = product_id;
+        this.product_name = product_name;
         this.quantity = quantity;
         this.amount = amount;
     }
@@ -59,5 +61,13 @@ public class ItemDto implements Serializable {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 }

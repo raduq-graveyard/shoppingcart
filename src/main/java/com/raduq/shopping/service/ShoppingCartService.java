@@ -35,7 +35,6 @@ public class ShoppingCartService {
         Product product = productService.getProduct(product_id);
         CommerceItem item = commerceItemService.save(new CommerceItem(product,quantity));
         getShoppingCart().addItem(item);
-        return new ItemDto(item.getId().toString(),item.getProduct_id().getId().toString(),
-                item.getQuantity().toString(),item.getAmount().toString());
+        return item.toDto();
     }
 }

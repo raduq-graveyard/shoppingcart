@@ -1,9 +1,13 @@
 package com.raduq.shopping.model;
 
+import com.raduq.shopping.dto.CartDto;
+import com.raduq.shopping.dto.ItemDto;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Raduq on 04/07/2016.
@@ -53,4 +57,11 @@ public class ShoppingCart implements Serializable {
         }
     }
 
+    public CartDto toDto() {
+        CartDto cart = new CartDto();
+        this.items.stream().forEach(item -> cart.getItems().add(item.toDto()));
+        calculate();
+        cart.setAmount(getAmount().toString());
+        return cart;
+    }
 }
