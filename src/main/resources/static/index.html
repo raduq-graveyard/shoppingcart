@@ -42,15 +42,15 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="prdName">Nome</label>
-                <input type="text" class="form-control" id="prdName" placeholder="Nome" ng-model="vm.name">
+                <input type="text" class="form-control" id="prdName" placeholder="Nome" ng-model="vm.newProd.name">
             </div>
             <div class="form-group">
                 <label for="prdImage">Url da imagem</label>
-                <input type="text" class="form-control" id="prdImage" placeholder="Url da imagem" ng-model="vm.image">
+                <input type="text" class="form-control" id="prdImage" placeholder="Url da imagem" ng-model="vm.newProd.image">
             </div>
             <div class="form-group">
                 <label for="prdPrice">Preço</label>
-                <input type="text" class="form-control" id="prdPrice" placeholder="Preço" ng-model="vm.price">
+                <input type="text" class="form-control" id="prdPrice" placeholder="Preço" ng-model="vm.newProd.price">
             </div>
             <button type="button" class="btn btn-default" ng-click="vm.saveProduct()">Salvar</button>
         </div>
@@ -65,11 +65,22 @@
         </div>
     </div>
 
-    <ul>
-        <li ng-repeat="product in vm.products">
-            {{product.name}}
-        </li>
-    </ul>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Imagem (URL)</th>
+            <th>Preço</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in vm.products">
+                <td>{{product.name}}</td>
+                <td>{{product.image}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>
 

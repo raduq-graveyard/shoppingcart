@@ -16,12 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @EntityScan(basePackages = "com.raduq.shopping")
 @ComponentScan(basePackages = "com.raduq.shopping")
-public class ShoppingCartApplication extends SpringBootServletInitializer{
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(ShoppingCartApplication.class);
-    }
+public class ShoppingCartApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ShoppingCartApplication.class, args);
