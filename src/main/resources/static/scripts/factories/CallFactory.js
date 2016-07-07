@@ -4,9 +4,9 @@ angular.module('shoppingCart').factory('CallFactory', ['$location','$resource', 
    var urls = {
        'PRODUCTS': '/shoppingcart/store/products',
        'NEW_PRODUCT': '/shoppingcart/store/products/new',
-       'SHOPPING_CART' : '/cart/shoppingcart',
-       'DELETE_ITEM' : '/cart/shoppingcart/items/',
-       'ADD_ITEM': '/cart/shoppingcart/items'
+       'SHOPPING_CART' : '/shoppingcart/cart/shoppingcart',
+       'DELETE_ITEM' : '/shoppingcart/cart/shoppingcart/items/',
+       'ADD_ITEM': '/shoppingcart/cart/shoppingcart/items'
    };
    return {
        products: function () {
@@ -17,11 +17,10 @@ angular.module('shoppingCart').factory('CallFactory', ['$location','$resource', 
        },
        shoppingCart: function () {
             return $resource(urls['SHOPPING_CART'], {}, {find: {method: 'GET', isArray: false}});
-       }
+       },
        deleteItem: function (id) {
             return $resource(urls['DELETE_ITEM'] + id, {}, {exec: {method: 'DELETE', isArray: false}});
-       }
-
+       },
        addItem : function () {
             return $resource(urls['ADD_ITEM'], {}, {save: {method: 'POST', isArray: false}});
        }

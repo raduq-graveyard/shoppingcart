@@ -1,5 +1,6 @@
 package com.raduq.shopping.service;
 
+import com.raduq.shopping.dto.ItemDto;
 import com.raduq.shopping.model.CommerceItem;
 import com.raduq.shopping.model.Product;
 import com.raduq.shopping.model.ShoppingCart;
@@ -30,10 +31,11 @@ public class ShoppingCartService {
         getShoppingCart().removeItem(id);
     }
 
-    public CommerceItem addItem(Long product_id, Integer quantity) {
+    public ItemDto addItem(Long product_id, Integer quantity) {
         Product product = productService.getProduct(product_id);
         CommerceItem item = commerceItemService.save(new CommerceItem(product,quantity));
-        shoppingCart.addItem(item);
-        return item;
+        getShoppingCart().addItem(item);
+        return new ItemDto(item.getId().toString(),item.getProduct_id().getId().toString(),
+                item.getQuantity().toString(),item.getAmount().toString());
     }
 }

@@ -1,5 +1,6 @@
 package com.raduq.shopping.controller;
 
+import com.raduq.shopping.dto.ItemDto;
 import com.raduq.shopping.model.CommerceItem;
 import com.raduq.shopping.model.ShoppingCart;
 import com.raduq.shopping.service.ShoppingCartService;
@@ -28,7 +29,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingcart/items", produces = "application/json", method = RequestMethod.POST)
-    public CommerceItem addItem(@RequestParam Long product_id,@RequestParam Integer quantity){
-        return shoppingCartService.addItem(product_id,quantity);
+    public ItemDto addItem(@RequestBody ItemDto item){
+        return shoppingCartService.addItem(Long.parseLong(item.getProduct_id()),Integer.parseInt(item.getQuantity()));
     }
 }

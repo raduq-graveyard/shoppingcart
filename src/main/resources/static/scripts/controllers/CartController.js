@@ -2,7 +2,9 @@
 angular.module('shoppingCart').controller('CartController', ['CallFactory', function (CallFactory) {
     var vm = this;
     vm.products = [];
-    vm.productsMessage = '';
+    vm.errorMessage = '';
+
+    vm.cart = {};
 
     vm.creatingProduct = false;
     vm.newProd = {
@@ -10,6 +12,7 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
         image: '',
         price: ''
     };
+    vm.newItemQuantity = 0;
 
     vm.initialize = function () {
       CallFactory.products().find().$promise.then(function(response){
@@ -20,7 +23,12 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
              price: ''
           };
       },function(error){
-          vm.productsMessage = error.statusText;
+          vm.errorMessage = error.statusText;
+      });
+      CallFactory.shoppingCart().find().$promise.then(function(response)){
+        vm.cart = response;
+      },function(error){
+         vm.errorMessage = error.statusText;
       });
     };
 
@@ -32,12 +40,28 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
         vm.creatingProduct = true;
     };
 
-     vm.saveProduct = function(){
-        CallFactory.newProduct().save(vm.newProd).$promise.then(function(response){
-            vm.initialize();
-            vm.creatingProduct = false;
-        },function(error){
+    vm.saveProduct = function(){
+       CallFactory.newProduct().save(vm.newProd).$promise.then(function(response){
+           vm.initialize();
+           vm.creatingProduct = false;
+       },function(error){
            vm.productsMessage = error.statusText;
-        });
-     }
+       });
+    }
+
+    vm.addProduct = function(id){
+       var itemDto = {
+           id: '',
+           product_id: id,
+           quantity: vm.newItemQuantity,
+           amount: ''
+       };
+       CallFactory.addItem().save(itemDto).$promise.then(function(response){
+           vm.initialize();
+           vm.newItemQuantity = 0;
+       },function(error){
+           vm.errorMessage = error.statusText;
+       });
+    }
+
 }]);
