@@ -15,11 +15,6 @@
         </button>
         <a class="navbar-brand" href="#"> Shopping Cart</a>
     </div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="./"> Home </a></li>
-        </ul>
-    </div>
 </div>
 
 <div class="panel panel-danger" ng-show="vm.errorMessage">
@@ -33,7 +28,7 @@
 
 <div class="jumbotron">
     <h3>Seu carrinho de compras</h3>
-    <p>Total: {{vm.cart.amount}}</p>
+    <p>Total: R$: {{vm.cart.amount}}</p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -44,7 +39,7 @@
         <tbody>
         <tr ng-repeat="item in vm.cart.items">
             <td>{{item.product_name}}</td>
-            <td>{{item.price}}</td>
+            <td>R$: {{item.amount}}</td>
             <td>
                 <button class="btn btn-default" type="button" ng-click="vm.removeProduct(item.id)">Remover</button>
             </td>
@@ -93,15 +88,13 @@
         <tr ng-repeat="product in vm.products">
             <td>{{product.name}}</td>
             <td>{{product.image}}</td>
-            <td>{{product.price}}</td>
+            <td>R$: {{product.price}}</td>
             <td>
-                <div class="col-lg-6">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Quantidade..." ng-model="product.quantity">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Quantidade..." ng-model="product.quantity">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" ng-click="vm.addProduct(product.id)">Adicionar</button>
+                        <button class="btn btn-default" type="button" ng-click="vm.addProduct(product.id,product.quantity)">Comprar</button>
                       </span>
-                    </div>
                 </div>
             </td>
         </tr>

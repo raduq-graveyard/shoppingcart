@@ -12,7 +12,6 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
         image: '',
         price: ''
     };
-    vm.newItemQuantity = 0;
 
     vm.initialize = function () {
       CallFactory.products().find().$promise.then(function(response){
@@ -49,25 +48,23 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
        });
     }
 
-    vm.addProduct = function(id){
+    vm.addProduct = function(id,quantity){
        var itemDto = {
            id: '',
            product_id: id,
-           quantity: vm.newItemQuantity,
+           quantity: quantity,
            amount: ''
        };
        CallFactory.addItem().save(itemDto).$promise.then(function(response){
            vm.initialize();
-           vm.newItemQuantity = 0;
        },function(error){
            vm.errorMessage = error.statusText;
        });
     }
 
     vm.removeProduct = function(id){
-           CallFactory.deleteItem(id).exec().$promise.then(function(response){
+           CallFactory.deleteItem().exec(id).$promise.then(function(response){
                vm.initialize();
-               vm.newItemQuantity = 0;
            },function(error){
                vm.errorMessage = error.statusText;
            });

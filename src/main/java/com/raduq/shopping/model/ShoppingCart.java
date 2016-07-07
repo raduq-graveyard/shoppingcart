@@ -49,11 +49,9 @@ public class ShoppingCart implements Serializable {
      * Calculates the amount based on items on the cart.
      */
     private void calculate(){
-        if(this.amount == null){
-            this.amount = new BigDecimal(0);
-        }
+        this.amount = new BigDecimal(0);
         for(CommerceItem item : this.items){
-            this.amount = this.amount.add(item.getAmount().multiply(new BigDecimal(item.getQuantity())));
+            this.amount = this.amount.add(item.getAmount());
         }
     }
 
