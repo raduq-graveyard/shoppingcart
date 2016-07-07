@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Raduq on 04/07/2016.
  */
-@Controller
+@RestController
 @RequestMapping(value = "/cart")
 public class ShoppingCartController {
 

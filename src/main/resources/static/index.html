@@ -13,7 +13,7 @@
             <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                 class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"> Shopping Cart</a>
+        <a class="navbar-brand" href="#"> Shopping Cart <smal>by Raduq</smal></a>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
 </div>
 
 <div class="jumbotron">
-    <h3>Seu carrinho de compras</h3>
+    <h3><i class="glyphicon glyphicon-shopping-cart"></i>Seu carrinho de compras</h3>
     <p>Total: R$: {{vm.cart.amount}}</p>
     <table class="table table-striped">
         <thead>
@@ -41,7 +41,9 @@
             <td>{{item.product_name}}</td>
             <td>R$: {{item.amount}}</td>
             <td>
-                <button class="btn btn-default" type="button" ng-click="vm.removeProduct(item.id)">Remover</button>
+                <button class="btn btn-default" type="button" ng-click="vm.removeProduct(item.id)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Remover</button>
             </td>
         </tr>
         </tbody>
@@ -51,7 +53,9 @@
 <div class="container-fluid">
     <h2>Produtos disponíveis</h2>
     <div>
-        <button class="btn btn-default" type="button" ng-click="vm.newProduct()">Novo produto</button>
+        <button class="btn btn-default" type="button" ng-click="vm.newProduct()">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            Novo produto</button>
     </div>
 
     <div class="panel panel-info" ng-show="vm.creatingProduct">
@@ -61,7 +65,8 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="prdName">Nome</label>
-                <input type="text" class="form-control" id="prdName" placeholder="Nome" ng-model="vm.newProd.name">
+                <input type="text" class="form-control" id="prdName" placeholder="Nome"
+                       ng-model="vm.newProd.name">
             </div>
             <div class="form-group">
                 <label for="prdImage">Url da imagem</label>
@@ -70,9 +75,12 @@
             </div>
             <div class="form-group">
                 <label for="prdPrice">Preço</label>
-                <input type="text" class="form-control" id="prdPrice" placeholder="Preço" ng-model="vm.newProd.price">
+                <input type="number" class="form-control" id="prdPrice" placeholder="Preço"
+                       ng-model="vm.newProd.price">
             </div>
-            <button type="button" class="btn btn-default" ng-click="vm.saveProduct()">Salvar</button>
+            <button type="button" class="btn btn-default" ng-click="vm.saveProduct()">
+                <i class="glyphicon glyphicon-ok"></i>
+                Salvar</button>
         </div>
     </div>
 
@@ -91,9 +99,12 @@
             <td>R$: {{product.price}}</td>
             <td>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Quantidade..." ng-model="product.quantity">
+                    <input type="number" class="form-control" placeholder="Quantidade..." ng-model="product.quantity">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" ng-click="vm.addProduct(product.id,product.quantity)">Comprar</button>
+                        <button class="btn btn-default" type="button"
+                                ng-click="vm.addProduct(product.id,product.quantity)">
+                            <i class="glyphicon glyphicon-bitcoin"></i>
+                            Comprar</button>
                       </span>
                 </div>
             </td>

@@ -5,7 +5,7 @@ angular.module('shoppingCart').factory('CallFactory', ['$location','$resource', 
        'PRODUCTS': '/shoppingcart/store/products',
        'NEW_PRODUCT': '/shoppingcart/store/products/new',
        'SHOPPING_CART' : '/shoppingcart/cart/shoppingcart',
-       'DELETE_ITEM' : '/shoppingcart/cart/shoppingcart/items/:id',
+       'DELETE_ITEM' : '/shoppingcart/cart/shoppingcart/items/',
        'ADD_ITEM': '/shoppingcart/cart/shoppingcart/items'
    };
    return {
@@ -18,8 +18,8 @@ angular.module('shoppingCart').factory('CallFactory', ['$location','$resource', 
        shoppingCart: function () {
             return $resource(urls['SHOPPING_CART'], {}, {find: {method: 'GET', isArray: false}});
        },
-       deleteItem: function () {
-            return $resource(urls['DELETE_ITEM'], {}, {exec: {method: 'DELETE', params: {id: '@id'}}});
+       deleteItem: function (id) {
+            return $resource(urls['DELETE_ITEM'] + id, {}, {exec: {method: 'DELETE'}});
        },
        addItem : function () {
             return $resource(urls['ADD_ITEM'], {}, {save: {method: 'POST', isArray: false}});

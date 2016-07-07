@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 
 /**
+ * This service is responsible for maintaining the products.
  * Created by Raduq on 04/07/2016.
  */
 @Service
@@ -28,10 +29,12 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    /** Get a specific product by Id **/
     public Product getProduct(Long product_id) {
         return repository.getOne(product_id);
     }
 
+    /** Create a new product **/
     public ProductDto newProduct(String name, String image, Long price) {
         Product newProduct = new Product();
         newProduct.setName(name);

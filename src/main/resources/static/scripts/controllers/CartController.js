@@ -46,7 +46,7 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
        },function(error){
            vm.productsMessage = error.statusText;
        });
-    }
+    };
 
     vm.addProduct = function(id,quantity){
        var itemDto = {
@@ -60,14 +60,14 @@ angular.module('shoppingCart').controller('CartController', ['CallFactory', func
        },function(error){
            vm.errorMessage = error.statusText;
        });
-    }
+    };
 
     vm.removeProduct = function(id){
-           CallFactory.deleteItem().exec(id).$promise.then(function(response){
-               vm.initialize();
-           },function(error){
-               vm.errorMessage = error.statusText;
-           });
-        }
+       CallFactory.deleteItem(id).exec().$promise.then(function(){
+           vm.initialize();
+       },function(error){
+           vm.errorMessage = error.statusText;
+       });
+    }
 
 }]);
